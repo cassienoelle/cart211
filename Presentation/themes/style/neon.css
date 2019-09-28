@@ -295,6 +295,7 @@ li > ol, li > ul {
   list-style: none;
   font-size: 1.3em;
 }
+/* end new */
 
 h1 {
   color: #0af;
@@ -371,6 +372,19 @@ a:hover, a:focus {
   color: #aaa;
   background: #000;
 }
+
+/* UPDATE: NEW CODE */
+/* INDIVIDUAL SLIDE STYLING */
+
+#three {
+  background-image: url("/images/jodi_slide_3.png");
+  background-position: right bottom;
+  background-repeat: no-repeat;
+  background-size: auto 60%;
+}
+
+/* END NEW */
+
 .deck-container > .slide {
   padding: 0 48px;
 }
