@@ -290,11 +290,17 @@ li > ol, li > ul {
   width: 100%;
 }
 
+/* UPDATE: NEW CODE */
+.bullets {
+  list-style: none;
+  font-size: 1.3em;
+}
+
 h1 {
   color: #0af;
   font-weight: normal;
   font-weight: 100;
-  text-shadow: 0 0 50px #0af, 0 0 3px #fff;
+/*  text-shadow: 0 0 15px #0af, 0 0 3px #fff; // UPDATE: 50px > 15px */
 }
 
 h2 {
@@ -302,7 +308,7 @@ h2 {
   border-bottom-color: #ccc;
   font-weight: normal;
   font-weight: 100;
-  text-shadow: 0 0 15px #af0, 0 0 2px #fff;
+/*  text-shadow: 0 0 10px #af0, 0 0 2px #fff; // UPDATE: 15px > 10px */
   border-bottom: 1px solid #333;
 }
 
@@ -310,7 +316,7 @@ h3 {
   color: #fff;
   font-weight: normal;
   font-weight: 100;
-  text-shadow: 0 0 10px #fff, 0 0 2px #fff;
+/*  text-shadow: 0 0 5px #fff, 0 0 2px #fff; // UPDATE: 10px > 5px */
 }
 
 pre {
@@ -359,7 +365,8 @@ a:hover, a:focus {
 }
 
 .deck-container {
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+  font-family: "Monaco", "Courier", monospace;
+/* UPDATE:  font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;*/
   font-size: 1.75em;
   color: #aaa;
   background: #000;
