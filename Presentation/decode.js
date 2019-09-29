@@ -10,7 +10,6 @@ inspired by code by Lauri: https://codepen.io/bionik/pen/dzBweB
 
 */
 
-let $randomString = "";
 let symbols;
 let symbolsNoSpaces;
 let $initString;
@@ -18,29 +17,68 @@ let outputString;
 let displayedString;
 let $currentSlide;
 let $decodeElement;
-let clicked = false;
 let characters = [];
+let $first, $second;
+let titles = [];
+let $elements = [];
+let currentTitle = 0;
+
 
 $(document).ready(function() {
     console.log("ready!");
-    $decodeElement = $(".decode");
-    $currentSlide = $(".deck-current");
 
-    $decodeElement.click(function() {
-      console.log('click!');
-
-      if (!clicked) {
-        setStrings();
-        generateRandomString(outputString);
-        setDecoder();
-        clicked = true;
-      }
-      else {
-        console.log('already clicked');
-      }
-    });
+    setTitles();
+    init();
 
 });
+
+// init()
+//
+//
+function init() {
+  switch (currentTitle) {
+    case 0:
+      $decodeElement = $('.first');
+      break;
+    case 1:
+      $decodeElement = $('.second');
+      break;
+    default:
+      break;
+  }
+    console.log ('decode element = ' + $decodeElement.text());
+  setStrings();
+
+  $decodeElement.click(function() {
+    console.log('click!');
+
+    if (!titles[currentTitle].decoded) {
+      setDecoder();
+      titles[currentTitle].decoded = true;
+    }
+    else {
+      console.log('already clicked');
+    }
+  });
+}
+
+// setTitles()
+//
+//
+function setTitles() {
+  titles = [
+    {
+      start: 'wh@ 12 17?',
+      finish: 'What is it?',
+      decoded: false
+    },
+    {
+      start: '0r191N2',
+      finish: 'Origins',
+      decoded: false
+    }
+  ];
+}
 
 // setStrings()
 //
@@ -49,8 +87,8 @@ $(document).ready(function() {
 // set symbols as string of combined characters of first two
 // make a version of symbols without spaces so first and last character are never 'empty'
 function setStrings() {
-  $initString = $decodeElement.text();
-  outputString = "What is it?";
+  $initString = titles[currentTitle].start;
+  outputString = titles[currentTitle].finish;
   symbols = $initString + outputString;
 
   for (let i = 0; i < symbols.length; i++){
@@ -63,27 +101,6 @@ function setStrings() {
   console.log('output = ' + outputString);
 }
 
-
-function setCharAt(str,index,chr) {
-    // if(index > str.length-1) return str;
-    return str.substr(0,index) + str.substr(index+1);
-}
-
-// generateRandomString()
-//
-//
-function generateRandomString(str) {
-  $randomString = "";
-  let numChars = str.length;
-  console.log('chars needed: ' + numChars);
-
-  for (let i = 0; i < str.length; i++) {
-    let r = Math.floor(Math.random() * symbols.length);
-    $randomString += symbols.charAt(r);
-    console.log($randomString);
-  }
-}
-
 // setDecoder()
 //
 //
@@ -92,7 +109,7 @@ function setDecoder() {
 
   for (let i = 0; i < outputString.length; i++) {
     characters.push({
-      countdown: Math.floor(Math.random() * 10),
+      countdown: Math.floor(Math.random() * 15),
       final: outputString.charAt(i)
     });
   }
@@ -130,10 +147,15 @@ function decodeText() {
   $decodeElement.text(displayedString);
 
   if (decoding) {
-    setTimeout(decodeText, 25);
+    setTimeout(decodeText, 30);
   }
   else {
     console.log('done!');
+    titles[currentTitle].decoded = true;
+    if (currentTitle < titles.length - 1) {
+      currentTitle++;
+    }
+    init();
   }
 
 }
