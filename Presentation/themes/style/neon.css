@@ -384,6 +384,9 @@ a:hover, a:focus {
   background-size: auto 65%;
 }
 
+#eight{
+  background-image: url("/images/stars.gif");
+}
 /* END NEW */
 
 .deck-container > .slide {
