@@ -22,6 +22,8 @@ let $first, $second;
 let titles = [];
 let $elements = [];
 let currentTitle = 0;
+let corruption = false;
+let decodeRate = 30;
 
 
 $(document).ready(function() {
@@ -43,6 +45,9 @@ function init() {
     case 1:
       $decodeElement = $('.second');
       break;
+    case 2:
+      $decodeElement = $('#corruption');
+      break;
     default:
       break;
   }
@@ -59,7 +64,15 @@ function init() {
     else {
       console.log('already clicked');
     }
+
+    if (currentTitle === 2) {
+      $("#corruption").css("border", "none");
+    }
   });
+
+  if (corruption) {
+      setDecoder();
+  }
 }
 
 // setTitles()
@@ -72,12 +85,19 @@ function setTitles() {
       finish: 'What is it?',
       decoded: false
     },
+
     {
       start: '0r191N2',
       finish: 'Origins',
       decoded: false
+    },
+
+    {
+    start: data[0],
+    finish: data[1],
+    decoded: false
     }
-  ];
+];
 }
 
 // setStrings()
@@ -109,7 +129,7 @@ function setDecoder() {
 
   for (let i = 0; i < outputString.length; i++) {
     characters.push({
-      countdown: Math.floor(Math.random() * 15),
+      countdown: Math.floor(Math.random() * 10),
       final: outputString.charAt(i)
     });
   }
@@ -147,11 +167,19 @@ function decodeText() {
   $decodeElement.text(displayedString);
 
   if (decoding) {
-    setTimeout(decodeText, 30);
+    setTimeout(decodeText, decodeRate);
   }
   else {
     console.log('done!');
     titles[currentTitle].decoded = true;
+
+    if(currentTitle === 2) {
+      let x = titles[currentTitle].start;
+      titles[currentTitle].start = titles[currentTitle].finish;
+      titles[currentTitle].finish = x;
+      corruption = true;
+      decodeRate = 100;
+    }
     if (currentTitle < titles.length - 1) {
       currentTitle++;
     }
@@ -159,6 +187,7 @@ function decodeText() {
   }
 
 }
+
 
 
 //
