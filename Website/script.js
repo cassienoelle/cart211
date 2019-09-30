@@ -43,8 +43,8 @@ function setupIntro() {
     'world'
   ];
   // Word to insert in middle of message
-  insertWord = 'other ';
-  alienText = 'σƚɥҽɾ ';
+  insertWord = 'other';
+  alienText = 'σƚɥҽɾ';
   // Select DOM element to display message
   welcomeMessage = document.getElementById('hello');
   // Set link path to next page
@@ -92,10 +92,12 @@ function appendLink(element, path) {
 function alienTextHover () {
   introLinkText.addEventListener('mouseover', ()=>{
     introLinkText.innerHTML = alienText;
+    introLinkText.style.letterSpacing = '-0.028em';
   });
 
   introLinkText.addEventListener('mouseout', ()=>{
     introLinkText.innerHTML = insertWord;
+    introLinkText.style.letterSpacing = 'normal';
   })
 }
 
@@ -126,6 +128,7 @@ function animateWelcome() {
     if (i === maxInterval) {
       clearInterval(cycle);
       animationComplete = true;
+      message[2] = " " + message[2];
       displayMessage();
       console.log('done!');
     }
