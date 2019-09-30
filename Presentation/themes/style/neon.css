@@ -301,7 +301,6 @@ h1 {
   color: #0af;
   font-weight: normal;
   font-weight: 100;
-  letter-spacing: 1rem;
 /*  text-shadow: 0 0 15px #0af, 0 0 3px #fff; // UPDATE: 50px > 15px */
 }
 
@@ -377,16 +376,28 @@ a:hover, a:focus {
 /* UPDATE: NEW CODE */
 /* INDIVIDUAL SLIDE STYLING */
 
-#three {
+#intro {
   background-image: url("/images/jodi_slide_3.png");
   background-position: right bottom;
   background-repeat: no-repeat;
   background-size: auto 65%;
 }
 
-#eight{
+#geocities {
   background-image: url("/images/stars.gif");
 }
+
+.fadeIn {
+  -webkit-transition: opacity 0.5s linear;
+   -moz-transition: opacity 0.5s linear;
+    -ms-transition: opacity 0.5s linear;
+     -o-transition: opacity 0.5s linear;
+        transition: opacity 0.5s linear;
+}
+
+
+
+
 /* END NEW */
 
 .deck-container > .slide {

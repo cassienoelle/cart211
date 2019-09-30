@@ -15,65 +15,129 @@ let symbolsNoSpaces;
 let $initString;
 let outputString;
 let displayedString;
-let $currentSlide;
 let $decodeElement;
 let characters = [];
-let $first, $second;
 let titles = [];
 let $elements = [];
 let currentTitle = 0;
 let corruption = false;
 let decodeRate = 30;
+let $currentSlide, $previousSlide;
+let $glitchText, $corruptionText;
+let clearBuffer = true;
 
 
 $(document).ready(function() {
     console.log("ready!");
 
-    setTitles();
-    init();
+    $glitchText = $('#error');
+    $glitchText.css('opacity', '0');
+    $corruptionText = $('#corruption');
+    $corruptionText.css('opacity', '0');
 
+    setTitles();
+    checkAnimation();
+    $(document).bind('deck.change', checkAnimation);
 });
 
-// init()
-//
-//
-function init() {
-  switch (currentTitle) {
-    case 0:
-      $decodeElement = $('.first');
-      break;
-    case 1:
-      $decodeElement = $('.second');
-      break;
-    case 2:
-      $decodeElement = $('#corruption');
-      break;
-    default:
-      break;
+
+function checkAnimation() {
+
+  clearBuffer = true;
+
+  setTimeout(function(){  console.log('checking');
+    console.log($('#what').hasClass('deck-current'));
+    if ($('#what').hasClass('deck-current')) {
+      currentTitle = 0;
+      runAnimation($('.first'));
+    }
+    else if ($('#slide-4').hasClass('deck-current')) {
+      currentTitle = 1;
+      runAnimation($('.second'));
+    }
+    else if ($('#origin').hasClass('deck-current')) {
+      currentTitle = 2;
+      runAnimation($('#corruption'));
+      $glitchText.addClass('fadeIn');
+      $glitchText.css('opacity', '1');
+      setTimeout(()=> {
+        $corruptionText.addClass('fadeIn');
+        $corruptionText.css('opacity', '0.4');
+      }, 2000);
+    }
+    else if ($('#context').hasClass('deck-current')) {
+      // corruption = false;
+      // $initString = " "
+      // outputString = " ";
+      // characters = [];
+      currentTitle = 3;
+      runAnimation($('.third'));
+    }
+  }, 700);
+
+
+
+}
+
+function runAnimation(element) {
+  clearBuffer = false;
+
+  let delay = 1000;
+  if (currentTitle === 2) {
+    delay = 1;
   }
-    console.log ('decode element = ' + $decodeElement.text());
+  $decodeElement = element;
+  console.log($decodeElement);
   setStrings();
 
-  $decodeElement.click(function() {
-    console.log('click!');
-
-    if (!titles[currentTitle].decoded) {
-      setDecoder();
-      titles[currentTitle].decoded = true;
-    }
-    else {
-      console.log('already clicked');
-    }
-
-    if (currentTitle === 2) {
-      $("#corruption").css("border", "none");
-    }
-  });
-
-  if (corruption) {
-      setDecoder();
+  if (!titles[currentTitle].decoded) {
+    setTimeout(setDecoder, delay);
+    titles[currentTitle].decoded = true;
   }
+  else {
+    console.log('already ran');
+    if (corruption) {
+      console.log('long decode');
+      setDecoder();
+    }
+  }
+
 }
+
+// // init()
+// //
+// //
+// function init() {
+//   switch (currentTitle) {
+//     case 0:
+//       $decodeElement = $('.first');
+//       break;
+//     case 1:
+//       $decodeElement = $('.second');
+//       break;
+//     case 2:
+//       $decodeElement = $('#corruption');
+//       break;
+//     default:
+//       break;
+//   }
+//     console.log ('decode element = ' + $decodeElement.text());
+//   setStrings();
+//
+//   $decodeElement.click(function() {
+//     console.log('click!');
+//
+//
+//
+  //   if (currentTitle === 2) {
+  //     $("#corruption").css("border", "none");
+  //   }
+  // });
+  //
+  // if (corruption) {
+  //     setDecoder();
+  // }
+// }
 
 // setTitles()
 //
@@ -95,6 +159,12 @@ function setTitles() {
     {
     start: data[0],
     finish: data[1],
+    decoded: false
+    },
+
+    {
+    start: 'k0N73X7',
+    finish: 'Context',
     decoded: false
     }
 ];
@@ -119,6 +189,7 @@ function setStrings() {
 
   console.log('init = ' + $initString);
   console.log('output = ' + outputString);
+  console.log('symbols = ' + symbols);
 }
 
 // setDecoder()
@@ -142,6 +213,8 @@ function setDecoder() {
 //
 //
 function decodeText() {
+  console.log('decodeText()');
+
   let decoding = false;
   let displayedString = "";
 
@@ -163,76 +236,30 @@ function decodeText() {
       displayedString += currentChar.final;
     }
   }
+  console.log('clear buffer? ' + clearBuffer);
+  if (!clearBuffer) {
+    $decodeElement.text(displayedString);
+  }
 
-  $decodeElement.text(displayedString);
 
-  if (decoding) {
+  if (decoding && !clearBuffer) {
     setTimeout(decodeText, decodeRate);
   }
   else {
     console.log('done!');
     titles[currentTitle].decoded = true;
 
-    if(currentTitle === 2) {
+    if (currentTitle === 2 && !clearBuffer) {
       let x = titles[currentTitle].start;
       titles[currentTitle].start = titles[currentTitle].finish;
       titles[currentTitle].finish = x;
       corruption = true;
       decodeRate = 100;
+      runAnimation($('#corruption'));
     }
-    if (currentTitle < titles.length - 1) {
-      currentTitle++;
+    else {
+      decodeRate = 30;
     }
-    init();
   }
 
 }
-
-
-
-//
-// // decodeTextArchived()
-// //
-// //
-// function decodeTextArchived() {
-//   decodedIndexes = [];
-//   let possibleIndexes = [];
-//
-//   for (let i = 0; i < outputString.length; i++) {
-//     possibleIndexes.push(i);
-//   }
-//
-//   console.log('okay! possible indexes is: ' + possibleIndexes);
-//   let timing = setInterval(function() {
-//     console.log('init length = ' + $initString.length);
-//     console.log('out length = ' + outputString.length);
-//
-//
-//       let r = possibleIndexes[Math.floor(Math.random() * possibleIndexes.length)];
-//       console.log('r = ' + r);
-//       console.log('includes? ' + decodedIndexes.includes(r));
-//
-//
-//       if (decodedIndexes.includes(r) == false) {
-//         $initString = setCharAt($initString,r,$randomString.charAt(r));
-//         decodedIndexes.push(r);
-//         $(".decode").text($initString);
-//       }
-//       else {
-//         $initString = setCharAt($initString,r,outputString.charAt(r));
-//         $(".decode").text($initString);
-//         possibleIndexes.splice(findIndex(possibleIndexes,r), 1);
-//         console.log('possible = ' + possibleIndexes);
-//         // console.log('includes');
-//         // console.log(decodedIndexes);
-//         // console.log('init length: ' + $initString.length + 'decodedIndex length: ' + decodedIndexes.length);
-//       }
-//
-//       if ($initString == outputString) {
-//         console.log('init = ' + $initString);
-//         console.log('output = ' + outputString);
-//         clearInterval(timing);
-//         console.log('cleared');
-//       }
-//   }, 50);
-// }
