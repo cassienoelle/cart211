@@ -91,9 +91,12 @@ function appendLink(element, path) {
 //
 function alienTextHover () {
   introLinkText.addEventListener('mouseover', ()=>{
-    introLinkText.innerHTML = alienText
-    introLinkText.style.fontWeight = 700;
+    introLinkText.innerHTML = alienText;
   });
+
+  introLinkText.addEventListener('mouseout', ()=>{
+    introLinkText.innerHTML = insertWord;
+  })
 }
 
 // animateWelcome()
