@@ -3,23 +3,29 @@
   <head>
     <title>CART 211 Lab September 30th, 2019</title>
 
+    <link rel="stylesheet" type="text/css" href="style.css">
     <script src="script.js"></script>
 
   </head>
 
   <body>
+    <div id="hello">
 
-    first name</br>
-      <input type="text" id="name" value=""></br>
+      <div id="inputName">
+        <h3 class="name">First Name</h3>
+          <input type="text" class="nameInput" id="firstName" value=""></br>
 
-    second name</br>
-      <input type="text" id="name2" value=""></br>
+          <h3 class="name">Last Name</h3>
+          <input type="text" class="nameInput" id="lastName" value=""></br>
 
-    <p>
-      <button type="button" onclick="sayHello()">submit</button>
-    </p>
-    <p id="helloTo">javascript</p>
+          <button type="button" onclick="sayHello()">submit</button>
+      </div>
 
+      <div id="result">
+        <p id="helloTo"></p>
+      </result>
+
+    </div>
 
   </body>
 
