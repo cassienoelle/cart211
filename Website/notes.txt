@@ -1,0 +1,2 @@
+follow up if I have time:
+- add blinking cursor animation to intro
