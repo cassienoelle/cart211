@@ -1,2 +1,10 @@
 follow up if I have time:
 - add blinking cursor animation to intro
+
+
+
+random text for lab one:
+
+This is the first paragraph of text. This is the first paragraph of text. This is the first paragraph of text. This is the first paragraph of text.
+
+Paragraphs are usually represented in visual media as blocks of text separated from adjacent blocks by blank lines and/or first-line indentation, but HTML paragraphs can be any structural grouping of related content, such as images or form fields.

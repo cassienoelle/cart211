@@ -1,0 +1,26 @@
+/*
+
+LAB ONE STYLESHEET
+
+Lab one focused on basic html.
+
+This styling is just to maintain the most basic styling
+of the container website.
+
+*/
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.container#labOne {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 450px;
+  margin: auto;
+}

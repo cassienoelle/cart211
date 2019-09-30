@@ -14,9 +14,9 @@ let welcomeMessage;
 let message;
 let insertWord;
 let alienText;
-let introLinkPath = "#";
+let introLinkPath;
 let introLinkText;
-let animationComplete = false;
+let animationComplete;
 
 document.addEventListener('DOMContentLoaded', ()=> {
 
@@ -48,7 +48,7 @@ function setupIntro() {
   // Select DOM element to display message
   welcomeMessage = document.getElementById('hello');
   // Set link path to next page
-  introLinkPath = "#";
+  introLinkPath = "lab_one.html";
   // Control for appending link to message
   animationComplete = false;
 }
@@ -67,7 +67,7 @@ function displayMessage() {
 
   if (animationComplete) {
     appendLink(introLinkText, introLinkPath);
-    alienTextHover();
+    alienTextHover(introLinkText);
   }
 
 }
@@ -89,15 +89,16 @@ function appendLink(element, path) {
 // alienTextHover ()
 //
 //
-function alienTextHover () {
-  introLinkText.addEventListener('mouseover', ()=>{
-    introLinkText.innerHTML = alienText;
-    introLinkText.style.letterSpacing = '-0.028em';
+function alienTextHover (link) {
+  let l = link;
+  l.addEventListener('mouseover', ()=>{
+    l.innerHTML = alienText;
+    l.style.letterSpacing = '-0.028em';
   });
 
-  introLinkText.addEventListener('mouseout', ()=>{
-    introLinkText.innerHTML = insertWord;
-    introLinkText.style.letterSpacing = 'normal';
+  l.addEventListener('mouseout', ()=>{
+    l.innerHTML = insertWord;
+    l.style.letterSpacing = 'normal';
   })
 }
 
