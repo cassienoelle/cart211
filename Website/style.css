@@ -1,0 +1,39 @@
+/*
+Website Title: Exoplanet
+Author: Cassie Smith
+Date: Fall 2019
+
+Main stylesheet for Assignment One, CART 211
+Professor: Dr. Olivier Sorrentino
+Concordia University
+*/
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+#container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.intro {
+  width: auto;
+  background-color: yellow;
+}
+
+h1 {
+  font-size: 5em;
+  font-family: "Helvetica", "Arial", sans-serif;
+}
+
+h1#hello {
+  text-align: center;
+}
