@@ -377,14 +377,14 @@ a:hover, a:focus {
 /* INDIVIDUAL SLIDE STYLING */
 
 #intro {
-  background-image: url("/images/jodi_slide_3.png");
+  background-image: url("images/jodi_slide_3.png");
   background-position: right bottom;
   background-repeat: no-repeat;
   background-size: auto 65%;
 }
 
 #geocities {
-  background-image: url("/images/stars.gif");
+  background-image: url("images/stars.gif");
 }
 
 .fadeIn {
