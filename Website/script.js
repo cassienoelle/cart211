@@ -13,22 +13,16 @@ Concordia University
 let welcomeMessage;
 let message;
 let insertWord;
-let introLink;
+let alienText;
+let introLinkPath = "#";
+let introLinkText;
+let animationComplete = false;
 
 document.addEventListener('DOMContentLoaded', ()=> {
 
   console.log('ready');
-  // Set words in message
-  message = [
-    'hello ',
-    '',
-    'world'
-  ];
-  // Word to insert in middle of message
-  insertWord = 'other ';
-  // Select DOM element to display message and store in variable
-  welcomeMessage = document.getElementById('hello');
-  // Update element
+  setupIntro()
+  // Update DOM
   displayMessage();
 
   // Animate on delay
@@ -38,16 +32,68 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
 });
 
+// setupIntro()
+//
+// Set initial variables
+function setupIntro() {
+  // Message to display
+  message = [
+    'hello ',
+    '',
+    'world'
+  ];
+  // Word to insert in middle of message
+  insertWord = 'other ';
+  alienText = 'σƚɥҽɾ ';
+  // Select DOM element to display message
+  welcomeMessage = document.getElementById('hello');
+  // Set link path to next page
+  introLinkPath = "#";
+  // Control for appending link to message
+  animationComplete = false;
+}
+
 // displayMessage()
 //
-// Concatenates words to form message and displays
-// Sets different styling for inserted word
+// Concatenates words to form message and displays message
+// Sets different styling for inserted word and adds link
 function displayMessage() {
 
   welcomeMessage.innerHTML = message[0] + '<span id="other">' + message[1] + '</span>' + message[2];
-  introLink = welcomeMessage.querySelector('.message > span#other');
-  introLink.style.color = '#d9441e';
+  introLinkText = welcomeMessage.querySelector('.message > span#other');
+  introLinkText.style.color = '#d9441e';
 
+  console.log('animation complete? ' + animationComplete);
+
+  if (animationComplete) {
+    appendLink(introLinkText, introLinkPath);
+    alienTextHover();
+  }
+
+}
+
+// appendLink(element, path)
+//
+//
+function appendLink(element, path) {
+  console.log('append!');
+  let el = element;
+  let href = path;
+  let wrapper = document.createElement('a');
+
+  el.parentNode.insertBefore(wrapper, el);
+  wrapper.appendChild(el);
+  wrapper.href = href;
+}
+
+// alienTextHover ()
+//
+//
+function alienTextHover () {
+  introLinkText.addEventListener('mouseover', ()=>{
+    introLinkText.innerHTML = alienText
+    introLinkText.style.fontWeight = 700;
+  });
 }
 
 // animateWelcome()
@@ -73,8 +119,11 @@ function animateWelcome() {
     i++;
 
     // Clear interval when full word has been inserted
+    // and append link to inserted word
     if (i === maxInterval) {
       clearInterval(cycle);
+      animationComplete = true;
+      displayMessage();
       console.log('done!');
     }
   }, timing);
