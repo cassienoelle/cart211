@@ -48,7 +48,7 @@ function setupIntro() {
   // Select DOM element to display message
   welcomeMessage = document.getElementById('hello');
   // Set link path to next page
-  introLinkPath = "lab_one.html";
+  introLinkPath = "menu.html";
   // Control for appending link to message
   animationComplete = false;
 }
