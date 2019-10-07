@@ -57,6 +57,10 @@ h1#hello {
   padding-top: 3em;
 }
 
+.menu-item a {
+  text-decoration: none;
+}
+
 #one {
   grid-area: one;
 }
@@ -79,16 +83,4 @@ h1#hello {
 
 #six {
   grid-area: six;
-}
-
-#seven {
-  grid-area: seven;
-}
-
-#eight {
-  grid-area: eight;
-}
-
-#nine {
-  grid-area: nine;
 }
