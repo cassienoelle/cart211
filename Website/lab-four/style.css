@@ -1,0 +1,79 @@
+/*
+Author: Cassie Smith
+Date: Fall 2019
+
+Stylesheet for Lab Four, CART 211
+Professor: Dr. Olivier Sorrentino
+Concordia University
+*/
+body {
+  font-family: "Helvetica", "Arial", sans-serif;
+  background-color: black;
+}
+
+.container {
+  width: 80%;
+  margin: 150px auto;
+}
+
+.name {
+  margin-bottom: 0.5em;
+  color: #d9fa02;
+  text-shadow: 2px 2px #2a3285;
+}
+
+.nameInput {
+  padding: 0.8em;
+  font-size: 1em;
+}
+
+div#hello {
+  display: flex;
+  justify-content: flex-start;
+  align-items: stretch;
+  height: auto;
+}
+
+#hello > div {
+  padding: 2rem;
+}
+
+button {
+  margin-top: 1.5em;
+  padding: 1em;
+  font-size: 1em;
+  text-align: left;
+  border: 1px solid #aac400;
+  background-color: #d9fa02;
+}
+
+div#inputName {
+  background-color: #343ead;
+}
+
+div#result {
+  background-color: #d9fa02;
+  font-size: 3em;
+  font-weight: 900;
+}
+
+p#hello {
+  color: #343ead;
+}
+
+p#helloTo {
+  text-align: left;
+  color: #343ead;
+}
+
+.hide {
+  display: none;
+}
+
+#quote {
+  margin-top: 3em;
+  font-size: 1.5em;
+  letter-spacing: 0.05em;
+  width: 700px;
+  color: grey;
+}

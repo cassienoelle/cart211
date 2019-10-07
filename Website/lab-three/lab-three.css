@@ -13,11 +13,25 @@ body {
 .container {
   width: 80%;
   margin: 150px auto;
+}
+
+.image-layout {
+  width: inherit;
+  margin: auto;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
 }
 
 .exoplanet {
-  width: 15em;
+  width: 20em;
+}
+
+.quote {
+  color: #bbb8b8;
+  margin-top: 3em;
+  font-size: 1.2em;
+  font-weight: 200;
+  letter-spacing: 0.05em;
+  text-align: center;
 }
