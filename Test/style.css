@@ -1,0 +1,13 @@
+:root {
+  --story-bg-color: rgba(58, 226, 58, 1.0);
+  --info-bg-color: rgba(24, 24, 24, 1.0);
+  --resources-bg-color: pink;
+}
+
+.narrative {
+  background-color: var(--story-bg-color);
+}
+
+.more-info {
+  backround-color: var(--info-bg-color);
+}
