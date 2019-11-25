@@ -8,13 +8,41 @@ body {
   overflow: hidden;
   margin: 0;
   padding: 0;
+  font-family: "Roboto", Arial, sans-serif;
 }
 
-.narrative {
+.story {
   background-color: var(--story-bg-color);
 }
 
-.slide {
-  width: 100vw;
-  min-height: 100vh;
+.wrapper {
+  width: 90%;
+  height: 100%;
+  margin: auto;
+
+  display: grid;
+  grid-column-gap: 2em;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 100% 100%;
+  grid-template-areas:
+  "title title"
+  "image text";
+}
+
+.pageTitle {
+  grid-area: title;
+  font-size: 4em;
+  font-family: 'VT323', monospace;
+}
+
+.storyImage {
+  grid-area: image;
+}
+
+.storyText {
+  grid-area: text;
+}
+
+.pixelArt {
+  width: 100%;
 }
